@@ -27,7 +27,13 @@
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
+
+  <!-- Sidebar -->
+  @include('admin.layouts.sidebar')
+  <!-- /.sidebar -->
+
   <!-- Navbar -->
   @include('admin.layouts.navbar')
   <!-- /.navbar -->
