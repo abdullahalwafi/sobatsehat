@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Lokasi
@@ -51,15 +51,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ ('/kategori')}}" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
-                Layout Options
+                Kategori
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ ('/kegiatan')}}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Kegiatan
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Berita
