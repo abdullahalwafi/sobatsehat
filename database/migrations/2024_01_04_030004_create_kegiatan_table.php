@@ -18,6 +18,11 @@ return new class extends Migration
             $table->dateTime('waktu');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('lokasi_id');
+            $table->foreign('lokasi_id')->references('id')->on('lokasi');
+            $table->text('foto');
             $table->timestamps();
         });
     }

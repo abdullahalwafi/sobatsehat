@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Kegiatan;
+use App\Models\lokasi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -12,11 +13,7 @@ class KegiatanController extends Controller
     public function kegiatan()
     {
         // ambil data dari database
-        $kegiatan = Kegiatan::join('kategori', 'kategori.id', '=', 'kegiatan.kategori_id')
-
-        //tampilan data
-        ->select('kegiatan.*', 'kategori.nama_kategori as kategori')
-        ->get();
+        $kegiatan = Kegiatan::all();
 
         // kirim data ke view
         return view('admin.kegiatan.kegiatan', compact('kegiatan'));
@@ -28,10 +25,10 @@ class KegiatanController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        $kegiatan = Kegiatan::all();
+        $lokasi = lokasi::all();
 
         // kirim data ke view form create
-        return view('admin.kegiatan.create', compact('kategori','kegiatan'));
+        return view('admin.kegiatan.create', compact('kategori', 'lokasi'));
     }
 
     /**
@@ -43,19 +40,19 @@ class KegiatanController extends Controller
         $kegiatan = new Kegiatan;
 
         // kolom kode kita isi dengan input user kode
-        $kegiatan->nama_kegiatan = $request->nama_kegiatan;
+        $kegiatan->nama = $request->nama;
         $kegiatan->kategori_id = $request->kategori_id;
-        $kegiatan->lokasi = $request->lokasi;
-        $kegiatan->kategori_id = $request->kategori_id;
+        $kegiatan->lokasi_id = $request->lokasi_id;
+        $kegiatan->user_id = 1;
         $kegiatan->waktu = $request->waktu;
-        $kegiatan->inputer = $request->inputer;
         $kegiatan->deskripsi = $request->deskripsi;
+        $kegiatan->foto =  $request->file('foto')->store('foto', 'public');
 
         // simpen data nya
         $kegiatan->save();
 
         // tampilin view produk
-        return redirect('kegiatan');
+        return redirect('/dashboard/kegiatan');
     }
 
 
@@ -66,8 +63,10 @@ class KegiatanController extends Controller
     {
         //arahkan ke halaman edit
         $kategori = Kategori::all();
-        $kegiatan = Kegiatan::where('id', $id)->get();
+        $lokasi = lokasi::all();
+        $kegiatan = Kegiatan::find($id)->first();
         return view('admin.kegiatan.edit', compact(
+            'lokasi',
             'kegiatan',
             'kategori'
         ));
@@ -85,23 +84,27 @@ class KegiatanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
         // fitur edit data/validasi edit data
-        $kegiatan = Kegiatan::find($request->id);
-        $kegiatan->nama_kegiatan = $request->nama_kegiatan;
+        $kegiatan = Kegiatan::find($id)->first();
+        $kegiatan->nama = $request->nama;
         $kegiatan->kategori_id = $request->kategori_id;
-        $kegiatan->lokasi = $request->lokasi;
-        $kegiatan->kategori_id = $request->kategori_id;
+        $kegiatan->lokasi_id = $request->lokasi_id;
+        $kegiatan->user_id = 1;
         $kegiatan->waktu = $request->waktu;
-        $kegiatan->inputer = $request->inputer;
         $kegiatan->deskripsi = $request->deskripsi;
+        if($request->file('foto')){
+            $kegiatan->foto =  $request->file('foto')->store('foto', 'public');
+        } else {
+            $kegiatan->foto = $kegiatan->foto;
+        }
 
         // simpen data nya
         $kegiatan->save();
 
         // tampilin view produk
-        return redirect('kegiatan');
+        return redirect('/dashboard/kegiatan');
     }
 
     /**
@@ -110,10 +113,10 @@ class KegiatanController extends Controller
     public function destroy($id)
     {
         // fitur hapus data
-        $kegiatan = Kegiatan::find($id);
+        $kegiatan = Kegiatan::find($id)->first();
         $kegiatan->delete();
 
         // balikin ke halaman produk
-        return redirect('kegiatan')->with('success', 'Kegiatan berhasil dihapus ngabs');
+        return redirect('/dashboard/kegiatan')->with('success', 'Kegiatan berhasil dihapus ngabs');
     }
 }
