@@ -34,8 +34,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="/dashboard" class="nav-link active">
+          <li class="nav-item">
+            <a href="/dashboard" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('dashboard/lokasi')}}" class="nav-link">
+            <a href="{{url('dashboard/lokasi')}}" class="nav-link {{ Request::is('dashboard/lokasi', 'dashboard/lokasi/create', 'dashboard/lokasi/edit') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Lokasi
@@ -51,15 +51,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('dashboard/lokasi')}}" class="nav-link">
+            <a href="{{url('dashboard/kategori')}}" class="nav-link {{ Request::is('dashboard/kategori', 'dashboard/kategori/create', 'dashboard/kategori/edit') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file"></i>
               <p>
-                Layout Options
+                Kategori
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('dashboard/kegiatan')}}" class="nav-link">
+            <a href="{{url('dashboard/kegiatan')}}" class="nav-link {{ Request::is('dashboard/kegiatan', 'dashboard/kegiatan/create', 'dashboard/kegiatan/edit') ? 'active' : '' }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Kegiatan
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('dashboard/berita')}}" class="nav-link">
+            <a href="{{url('dashboard/berita')}}" class="nav-link {{ Request::is('dashboard/berita', 'dashboard/berita/create', 'dashboard/berita/edit') ? 'active' : '' }}">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Berita
@@ -76,7 +76,7 @@
           </li>
           <li class="nav-header">Authentication</li>
           <li class="nav-item">
-            <a href="{{url('dashboard/user')}}" class="nav-link">
+            <a href="{{url('dashboard/user')}}" class="nav-link {{ Request::is('dashboard/user', 'dashboard/user/create', 'dashboard/user/edit') ? 'active' : '' }}">
               <i class="nav-icon far fa-user"></i>
               <p>
                 Users

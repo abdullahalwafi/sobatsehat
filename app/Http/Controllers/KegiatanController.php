@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class KegiatanController extends Controller
 {
