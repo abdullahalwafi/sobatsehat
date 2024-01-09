@@ -20,8 +20,8 @@
                         <tr>
                             <th>NO</th>
                             <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>Kota</th>
+                            <th>Provinsi</th>
+                            <th>Kota/Kab</th>
                             <th>action</th>
                         </tr>
                     </thead>
@@ -29,8 +29,8 @@
                         <tr>
                             <th>NO</th>
                             <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>Kota</th>
+                            <th>Provinsi</th>
+                            <th>Kota/Kab</th>
                             <th>action</th>
                         </tr>
                     </tfoot>
@@ -39,8 +39,8 @@
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$l->nama}}</td>
-                            <td>{{$l->alamat}}</td>
-                            <td>{{$l->kota}}</td>
+                            <td>{{$l->province->name}}</td>
+                            <td>{{$l->cities->name}}</td>
                             <td>
                                 <a href="{{ url('dashboard/lokasi/edit/'.$l->id) }}" class="btn btn-sm btn-warning">Edit</a>
                                 <a href="{{ url('dashboard/lokasi/delete/'.$l->id) }}" class="btn btn-sm btn-danger"

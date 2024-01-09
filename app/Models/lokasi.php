@@ -13,13 +13,22 @@ class lokasi extends Model
     protected $table = 'lokasi';
 
     // bikin kolom yang bisa diisi
-    protected $fillable = [
-        'nama',
-        'alamat',
-        'kota',
-
-    ];
+    protected $guarded = ['id'];
     // bikin fungsi produk untuk relasi has many
-
-
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'provinces_id', 'id');
+    }
+    public function cities()
+    {
+        return $this->belongsTo(City::class, 'cities_id', 'id');
+    }
+    public function districts()
+    {
+        return $this->belongsTo(District::class, 'districts_id', 'id');
+    }
+    public function villages()
+    {
+        return $this->belongsTo(Village::class, 'villages_id', 'id');
+    }
 }

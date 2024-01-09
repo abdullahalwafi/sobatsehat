@@ -42,7 +42,10 @@ class LokasiController extends Controller
         // kolom kode kita isi dengan input user kode
         $lokasi->nama = $request->nama;
         $lokasi->alamat = $request->alamat;
-        $lokasi->kota = $request->kota;
+        $lokasi->provinces_id = $request->province;
+        $lokasi->districts_id = $request->district;
+        $lokasi->cities_id = $request->city;
+        $lokasi->villages_id = $request->village;
 
 
         // simpen data nya
