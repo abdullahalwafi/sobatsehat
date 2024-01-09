@@ -23,6 +23,10 @@ Route::get('/', function () {
 // });
 
 Route::prefix('dashboard')->group(function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    });
+    
     // CRUD berita
     Route::get('/berita', [BeritaController::class, 'index']);
     Route::prefix('berita')->group(function () {
@@ -33,7 +37,7 @@ Route::prefix('dashboard')->group(function () {
 
         Route::get('/edit/{id}', [BeritaController::class, 'edit']);
 
-        Route::post('/update', [BeritaController::class, 'update']);
+        Route::post('/update/{id}', [BeritaController::class, 'update']);
 
         Route::get('/delete/{id}', [BeritaController::class, 'destroy']);
 
@@ -48,7 +52,7 @@ Route::prefix('dashboard')->group(function () {
 
         Route::get('/edit/{id}', [LokasiController::class, 'edit']);
 
-        Route::post('/update', [LokasiController::class, 'update']);
+        Route::post('/update/{id}', [LokasiController::class, 'update']);
 
         Route::get('/delete/{id}', [LokasiController::class, 'destroy']);
 

@@ -9,7 +9,7 @@ use Illuminate\Routing\Controller;
 
 class LokasiController extends Controller
 {
-    public function lokasi()
+    public function index()
     {
         // ambil data dari database
         $lokasi = lokasi::
@@ -19,7 +19,7 @@ class LokasiController extends Controller
         ->get();
 
         // kirim data ke view
-        return view('admin.lokasi.lokasi', compact('lokasi'));
+        return view('admin.lokasi.index', compact('lokasi'));
     }
 
     /**
@@ -27,11 +27,8 @@ class LokasiController extends Controller
      */
     public function create()
     {
-        $berita = berita::all();
-        $lokasi = lokasi::all();
-
         // kirim data ke view form create
-        return view('admin.lokasi.create', compact('berita','lokasi'));
+        return view('admin.lokasi.create');
     }
 
     /**
@@ -52,7 +49,7 @@ class LokasiController extends Controller
         $lokasi->save();
 
         // tampilin view produk
-        return redirect('lokasi');
+        return redirect('/dashboard/lokasi');
     }
 
 
@@ -62,11 +59,9 @@ class LokasiController extends Controller
     public function edit(string $id)
     {
         //arahkan ke halaman edit
-        $berita = berita::all();
-        $lokasi = lokasi::where('id', $id)->get();
+        $lokasi = lokasi::where('id', $id)->first();
         return view('admin.lokasi.edit', compact(
-            'lokasi',
-            'berita'
+            'lokasi'
         ));
 
     }
@@ -82,7 +77,7 @@ class LokasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
         // fitur edit data/validasi edit data
         $lokasi = lokasi::find($request->id);
@@ -94,7 +89,7 @@ class LokasiController extends Controller
         $lokasi->save();
 
         // tampilin view produk
-        return redirect('lokasi');
+        return redirect('/dashboard/lokasi');
     }
 
     /**
@@ -107,6 +102,6 @@ class LokasiController extends Controller
         $lokasi->delete();
 
         // balikin ke halaman produk
-        return redirect('lokasi')->with('success', 'lokasi berita berhasil dihapus ngabs');
+        return redirect('/dashboard/lokasi')->with('success', 'lokasi berita berhasil dihapus ngabs');
     }
 }

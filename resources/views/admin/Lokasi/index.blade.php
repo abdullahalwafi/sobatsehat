@@ -1,13 +1,12 @@
 @extends('admin.layouts.app')
-@section('content')
+@section('konten')
 
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Lokasi</h1>
-    <p class="mb-4"><a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
-    <a href="{{url('/lokasi/create')}}" class="btn btn-sm btn-primary">TAMBAH</a>
+    <a href="{{url('dashboard/lokasi/create')}}" class="btn btn-sm btn-primary">TAMBAH</a>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -36,21 +35,19 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                    @php $no = 1 ; @endphp
-                                    @foreach($lokasi as $l)
-                                        <tr>
-                                            <td>{{$no}}</td>
-                                            <td>{{$l->nama}}</td>
-                                            <td>{{$l->alamat}}</td>
-                                            <td>{{$l->kota}}</td>
-                                            <td>
-                                                <a href="{{ url('lokasi/edit/'.$l->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                                <a href="{{ url('lokasi/delete/'.$l->id) }}" class="btn btn-sm btn-danger" 
-                                                onclick="if(!confirm('Apakah Anda yakin ingin menghapus data lokasi?')) {return false}">Hapus</a>
-                                            </td>
-                                        </tr>
-                                    @php $no++; @endphp
-                                    @endforeach
+                        @foreach($lokasi as $l)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$l->nama}}</td>
+                            <td>{{$l->alamat}}</td>
+                            <td>{{$l->kota}}</td>
+                            <td>
+                                <a href="{{ url('dashboard/lokasi/edit/'.$l->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ url('dashboard/lokasi/delete/'.$l->id) }}" class="btn btn-sm btn-danger"
+                                    onclick="if(!confirm('Apakah Anda yakin ingin menghapus data lokasi?')) {return false}">Hapus</a>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

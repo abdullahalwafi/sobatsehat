@@ -4,22 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\lokasi;
 use App\Models\berita;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class BeritaController extends Controller
 {
-    public function berita()
+    public function index()
     {
         // ambil data dari database
-        $berita = berita::join('lokasi', 'lokasi.id', '=', 'berita.lokasi_id')
-
-        //tampilan data
-        ->select('berita.*', 'lokasi.nama_lokasi as lokasi')
-        ->get();
+        $berita = berita::all();
 
         // kirim data ke view
-        return view('admin.berita.berita', compact('berita'));
+        return view('admin.berita.index', compact('berita'));
     }
 
     /**
@@ -27,11 +24,11 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        $lokasi = lokasi::all();
+        $user = User::all();
         $berita = berita::all();
 
         // kirim data ke view form create
-        return view('admin.berita.create', compact('lokasi','berita'));
+        return view('admin.berita.create', compact('user','berita'));
     }
 
     /**

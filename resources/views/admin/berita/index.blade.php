@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
-@section('content')
+@section('konten')
 
-<div class="container-fluid">
+<div class="container">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">BERITA</h1>
     <p class="mb-4"><a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
 
-    <a href="{{url('/berita/create')}}" class="btn btn-sm btn-primary">TAMBAH</a>
+    <a href="{{url('dashboard/berita/create')}}" class="btn btn-sm btn-primary">TAMBAH</a>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -38,22 +38,22 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                    @php $no = 1 ; @endphp
-                                    @foreach($berita as $b)
-                                        <tr>
-                                            <td>{{$no}}</td>
-                                            <td>{{$b->judul}}</td>
-                                            <td>{{$b->waktu}}</td>
-                                            <td>{{$b->caption}}</td>
-                                            <td>{{$b->user_id}}</td>
-                                            <td>
-                                                <a href="{{ url('berita/edit/'.$p->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                                <a href="{{ url('berita/delete/'.$p->id) }}" class="btn btn-sm btn-danger" 
-                                                onclick="if(!confirm('Apakah Anda yakin ingin menghapus data berita?')) {return false}">Hapus</a>
-                                            </td>
-                                        </tr>
-                                    @php $no++; @endphp
-                                    @endforeach
+                        @php $no = 1 ; @endphp
+                        @foreach($berita as $b)
+                        <tr>
+                            <td>{{$no}}</td>
+                            <td>{{$b->judul}}</td>
+                            <td>{{$b->waktu}}</td>
+                            <td>{{$b->caption}}</td>
+                            <td>{{$b->user_id}}</td>
+                            <td>
+                                <a href="{{ url('berita/edit/'.$p->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{ url('berita/delete/'.$p->id) }}" class="btn btn-sm btn-danger"
+                                    onclick="if(!confirm('Apakah Anda yakin ingin menghapus data berita?')) {return false}">Hapus</a>
+                            </td>
+                        </tr>
+                        @php $no++; @endphp
+                        @endforeach
                     </tbody>
                 </table>
             </div>

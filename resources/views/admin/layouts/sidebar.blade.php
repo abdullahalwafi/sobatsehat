@@ -35,7 +35,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="/dashboard" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{url('dashboard/lokasi')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Lokasi
@@ -51,15 +51,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ ('/kategori')}}" class="nav-link">
+            <a href="{{url('dashboard/lokasi')}}" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
-                Kategori
+                Layout Options
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ ('/kegiatan')}}" class="nav-link">
+            <a href="{{url('dashboard/kegiatan')}}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Kegiatan
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{url('dashboard/berita')}}" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Berita
@@ -76,7 +76,7 @@
           </li>
           <li class="nav-header">Authentication</li>
           <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="{{url('dashboard/user')}}" class="nav-link">
               <i class="nav-icon far fa-user"></i>
               <p>
                 Users
