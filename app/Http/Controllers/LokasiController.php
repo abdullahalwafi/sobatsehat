@@ -47,7 +47,6 @@ class LokasiController extends Controller
         $lokasi->cities_id = $request->city;
         $lokasi->villages_id = $request->village;
 
-
         // simpen data nya
         $lokasi->save();
 
@@ -83,10 +82,13 @@ class LokasiController extends Controller
     public function update(Request $request, string $id)
     {
         // fitur edit data/validasi edit data
-        $lokasi = lokasi::find($request->id);
+        $lokasi = lokasi::find($id);
         $lokasi->nama = $request->nama;
         $lokasi->alamat = $request->alamat;
-        $lokasi->kota = $request->kota;
+        $lokasi->provinces_id = $request->province;
+        $lokasi->districts_id = $request->district;
+        $lokasi->cities_id = $request->city;
+        $lokasi->villages_id = $request->village;
 
         // simpen data nya
         $lokasi->save();
