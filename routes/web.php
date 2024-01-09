@@ -22,39 +22,35 @@ Route::get('/', function () {
 //     return view('admin.dashboard');
 // });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+Route::prefix('dashboard')->group(function () {
+    // CRUD berita
+    Route::get('/berita', [BeritaController::class, 'index']);
+    Route::prefix('berita')->group(function () {
 
+        Route::get('/create', [BeritaController::class, 'create']);
 
+        Route::post('/store', [BeritaController::class, 'store']);
 
-// CRUD berita
-Route::get('/berita', [BeritaController::class, 'index']);
-Route::prefix('berita')->group(function (){
+        Route::get('/edit/{id}', [BeritaController::class, 'edit']);
 
-    Route::get('/create', [BeritaController::class, 'create']);
+        Route::post('/update', [BeritaController::class, 'update']);
 
-    Route::post('/store', [BeritaController::class, 'store']);
+        Route::get('/delete/{id}', [BeritaController::class, 'destroy']);
 
-    Route::get('/edit/{id}', [BeritaController::class, 'edit']);
+    });
+    // CRUD lokasi
+    Route::get('/lokasi', [LokasiController::class, 'index']);
+    Route::prefix('lokasi')->group(function () {
 
-    Route::post('/update', [BeritaController::class, 'update']);
+        Route::get('/create', [LokasiController::class, 'create']);
 
-    Route::get('/delete/{id}', [BeritaController::class, 'destroy']);
+        Route::post('/store', [LokasiController::class, 'store']);
 
-});
-// CRUD lokasi
-Route::get('/lokasi', [LokasiController::class, 'index']);
-Route::prefix('lokasi')->group(function (){
+        Route::get('/edit/{id}', [LokasiController::class, 'edit']);
 
-    Route::get('/create', [LokasiController::class, 'create']);
+        Route::post('/update', [LokasiController::class, 'update']);
 
-    Route::post('/store', [LokasiController::class, 'store']);
+        Route::get('/delete/{id}', [LokasiController::class, 'destroy']);
 
-    Route::get('/edit/{id}', [LokasiController::class, 'edit']);
-
-    Route::post('/update', [LokasiController::class, 'update']);
-
-    Route::get('/delete/{id}', [LokasiController::class, 'destroy']);
-
+    });
 });
