@@ -64,13 +64,12 @@ class KegiatanController extends Controller
         //arahkan ke halaman edit
         $kategori = Kategori::all();
         $lokasi = lokasi::all();
-        $kegiatan = Kegiatan::find($id)->first();
+        $kegiatan = Kegiatan::find($id);
         return view('admin.kegiatan.edit', compact(
             'lokasi',
             'kegiatan',
             'kategori'
         ));
-
     }
 
     /**
@@ -87,14 +86,14 @@ class KegiatanController extends Controller
     public function update(Request $request, string $id)
     {
         // fitur edit data/validasi edit data
-        $kegiatan = Kegiatan::find($id)->first();
+        $kegiatan = Kegiatan::find($id);
         $kegiatan->nama = $request->nama;
         $kegiatan->kategori_id = $request->kategori_id;
         $kegiatan->lokasi_id = $request->lokasi_id;
         $kegiatan->user_id = 1;
         $kegiatan->waktu = $request->waktu;
         $kegiatan->deskripsi = $request->deskripsi;
-        if($request->file('foto')){
+        if ($request->file('foto')) {
             $kegiatan->foto =  $request->file('foto')->store('foto', 'public');
         } else {
             $kegiatan->foto = $kegiatan->foto;
@@ -113,7 +112,7 @@ class KegiatanController extends Controller
     public function destroy($id)
     {
         // fitur hapus data
-        $kegiatan = Kegiatan::find($id)->first();
+        $kegiatan = Kegiatan::find($id);
         $kegiatan->delete();
 
         // balikin ke halaman produk

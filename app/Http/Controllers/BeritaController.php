@@ -59,11 +59,10 @@ class BeritaController extends Controller
     public function edit(string $id)
     {
         //arahkan ke halaman edit
-        $berita = berita::find($id)->first();
+        $berita = berita::find($id);
         return view('admin.berita.edit', compact(
             'berita',
         ));
-
     }
 
     /**

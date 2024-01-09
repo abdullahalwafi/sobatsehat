@@ -4,6 +4,7 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,4 +89,16 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit']);
     // bikin routing untuk delet data data menggunakan destroy
     Route::get('/kategori/delete/{id}', [KategoriController::class, 'destroy']);
+
+    Route::get('/user', [UserController::class, 'index']);
+
+    Route::get('/user/create', [UserController::class, 'create']);
+    // bikin routing untuk kirim data menggunakan store
+    Route::post('/user/store', [UserController::class, 'store']);
+    // bikin routing untuk edit data menggunakan update
+    Route::put('/user/update/{id}', [UserController::class, 'update']);
+    // bikin routing edit
+    Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+    // bikin routing untuk delet data data menggunakan destroy
+    Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 });
