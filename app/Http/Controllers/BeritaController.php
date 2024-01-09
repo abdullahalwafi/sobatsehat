@@ -24,11 +24,10 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        $user = User::all();
         $berita = berita::all();
 
         // kirim data ke view form create
-        return view('admin.berita.create', compact('user','berita'));
+        return view('admin.berita.create', compact('berita'));
     }
 
     /**
@@ -43,13 +42,14 @@ class BeritaController extends Controller
         $berita->judul = $request->judul;
         $berita->waktu = $request->waktu;
         $berita->caption = $request->caption;
-        $berita->user_id = $request->user_id;
+        $berita->user_id = 1;
+        $berita->foto =  $request->file('foto')->store('foto', 'public');
 
         // simpen data nya
         $berita->save();
 
         // tampilin view produk
-        return redirect('berita');
+        return redirect('dashboard/berita');
     }
 
 
@@ -59,11 +59,9 @@ class BeritaController extends Controller
     public function edit(string $id)
     {
         //arahkan ke halaman edit
-        $lokasi = lokasi::all();
-        $berita = berita::where('id', $id)->get();
+        $berita = berita::find($id)->first();
         return view('admin.berita.edit', compact(
             'berita',
-            'lokasi'
         ));
 
     }
@@ -86,13 +84,17 @@ class BeritaController extends Controller
         $berita->judul = $request->judul;
         $berita->waktu = $request->waktu;
         $berita->caption = $request->caption;
-        $berita->user_id = $request->user_id;
-
+        $berita->user_id = 1;
+        if ($request->file('foto')) {
+            $berita->foto =  $request->file('foto')->store('foto', 'public');
+        } else {
+            $berita->foto = $berita->foto;
+        }
         // simpen data nya
         $berita->save();
 
         // tampilin view produk
-        return redirect('berita');
+        return redirect('dashboard/berita');
     }
 
     /**
@@ -105,6 +107,6 @@ class BeritaController extends Controller
         $berita->delete();
 
         // balikin ke halaman produk
-        return redirect('berita')->with('success', 'berita berhasil dihapus ngabs');
+        return redirect('dashboard/berita')->with('success', 'berita berhasil dihapus ngabs');
     }
 }

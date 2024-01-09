@@ -1,49 +1,51 @@
 @extends('admin.layouts.app')
 @section('konten')
+    <div class="container">
+        <h4>Tambah Data Berita</h4>
+        <div class="card">
+            <div class="card-header">
+                Tambah data
+            </div>
+            <div class="card-body">
 
-<div class="container">
-  <h2>Tambah data berita</h2>
-  <div class="card">
-    <div class="card-header">Tambah Data</div>
-    <div class="card-body">
-      <form action="{{url('berita/store')}}" method="POST" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <div class="form-group row">
-          <label for="judul" class="col-4 col-form-label">Judul</label>
-          <div class="col-8">
-            <input id="judul" name="judul" type="text" class="form-control">
-          </div>
+                <form action="{{ url('dashboard/berita/store') }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group row">
+                        <label for="judul" class="col-4 col-form-label">Judul</label>
+                        <input id="judul" name="judul" type="text" class="form-control col-8" required>
+                    </div>
+                    <div class="form-group row">
+                        <label for="waktu" class="col-4 col-form-label">Waktu</label>
+                        <input id="waktu" name="waktu" type="datetime-local" class="form-control col-8" required>
+                    </div>
+                    <div class="form-group row">
+                        <label for="foto" class="col-4 col-form-label">Foto</label>
+                        <input id="foto" name="foto" type="file" accept="image/*" class="form-control col-8" required>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="caption" class="col-md-4 col-form-label">Caption</label>
+                        <textarea id="editor" name="caption" class="form-control col-md-8"></textarea>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-4 col-8">
+                            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group row">
-          <label for="waktu" class="col-4 col-form-label">Waktu</label>
-          <div class="col-8">
-            <input id="waktu" name="waktu" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="caption" class="col-4 col-form-label">Caption</label>
-          <div class="col-8">
-            <input id="caption" name="caption" type="text" class="form-control">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="user_id" class="col-4 col-form-label">User_id</label>
-          <div class="col-8">
-            <select id="user_id" name="user_id" class="custom-select">
-              @foreach($user as $u)
-              <option value="{{$u->id}}">{{$u->id}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="offset-4 col-8">
-            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-      </form>
     </div>
-  </div>
-</div>
-
+    
+    <script src="{{asset('dist/js/ckeditor.js')}}"></script>
+    <script>
+         ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection
