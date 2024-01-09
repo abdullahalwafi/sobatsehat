@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('konten')
 
-<div class="container-fluid">
+<div class="container">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Lokasi</h1>
